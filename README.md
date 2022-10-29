@@ -2,11 +2,14 @@
 
 Description and configuration to connect to SSH server, in case you can't directly connect using SSH (port 22) protocol. The idea is to use a proxy with HTTP CONNECT capability to transmit SSL/TLS which, does not encapsulate HTTP, but encapsulate SSH.
 
-## Why sslh ?
+## Why *sslh* ?
 
 *sslh* is just here to make valid HTTP response in case of HTTPS request on the port 443 of the server. This is optional. But without this, request on port 443 will result by weird HTTP/0.9 response from *SSHd*.
 
 ## Architecture
+
+SSH (Client) --> *proxytunnel* (Client) --> Squid (Proxy) --> *Stunnel* :443 (Server) --> *sslh* :8022 (Server) --> SSH :22 (Server)
+____________________________________________________________________________________________________________--> HTTP :80 (Server)
 
 ## Configuration
 
