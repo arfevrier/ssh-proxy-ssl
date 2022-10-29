@@ -1,0 +1,18 @@
+version: "3"
+services:
+  sslh:
+    image: "imartyn/sslh:alpine"
+    network_mode: "host"
+    restart: always
+    command: -f --listen=127.0.0.1:8022 --ssh=???????????:22 --http=???????????:80
+  stunnel:
+    image: "dweomer/stunnel"
+    network_mode: "host"
+    restart: always
+    volumes:
+      - /etc/ssl/??????????/cert.pem:/etc/stunnel/stunnel.pem:ro
+      - /etc/ssl/??????????/key.pem:/etc/stunnel/stunnel.key:ro
+    environment:
+      STUNNEL_SERVICE: ssh
+      STUNNEL_ACCEPT: ???inet_ip????:443
+      STUNNEL_CONNECT: 127.0.0.1:8022
