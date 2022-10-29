@@ -11,6 +11,10 @@ Description and configuration to connect to SSH server, in case you can't direct
 SSH (Client) --> *proxytunnel* (Client) --> Squid (Proxy) --> *Stunnel* :443 (Server) --> *sslh* :8022 (Server) --> SSH :22 (Server)
 ____________________________________________________________________________________________________________--> HTTP :80 (Server)
 
+* *proxytunnel* (Client) <--> Squid (Proxy): **HTTP Connect**
+* *proxytunnel* (Client) <--> *Stunnel* :443 (Server): **SSL/TLS**
+* SSH (Client) <--> *sslh* :8022 (Server): **SSH**
+
 ## Configuration
 
 ``` yaml
