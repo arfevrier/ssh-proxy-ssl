@@ -4,7 +4,7 @@ Description and configuration to connect to SSH server, in case you can't direct
 
 # Architecture I
 
-![schema1](https://user-images.githubusercontent.com/23292338/200145871-265ec062-2eb4-4171-bedb-d5d78dcae614.png)
+![schema1](https://user-images.githubusercontent.com/23292338/200146638-4c687893-0efa-4d9e-92be-3f29d4b715fb.png)
 
 ``` apache
 # Apache2 Remote proxy
@@ -43,7 +43,7 @@ Host domain
 
 # Architecture II
 
-![schema2](https://user-images.githubusercontent.com/23292338/200146083-2a67f5dc-bda9-4f85-89e3-dba579808004.png)
+![schema2](https://user-images.githubusercontent.com/23292338/200146640-faef2624-1bae-4ff2-bc8d-6053508ad958.png)
 
 ## Why *sslh* ?
 
