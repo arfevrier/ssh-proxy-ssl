@@ -9,8 +9,8 @@ Description and configuration to connect to SSH server, in case you can't direct
 ``` apache
 # Apache2 Remote proxy
 <VirtualHost *:443>
-	ServerAdmin me@arfevrier.fr
-	Redirect permanent "/" "https://arfevrier.fr/"
+	ServerAdmin me@domain.fr
+	Redirect permanent "/" "https://domain.fr/"
 	
 	ProxyRequests On
 	AllowCONNECT 22 443
@@ -24,21 +24,21 @@ Description and configuration to connect to SSH server, in case you can't direct
 	</Proxy>
 	
 	SSLEngine on
-	SSLCertificateFile		/etc/ssl/arfevrier.fr/cert.pem
-	SSLCertificateKeyFile	/etc/ssl/arfevrier.fr/key.pem
-	SSLCACertificateFile	/etc/ssl/arfevrier.fr/fullchain.pem
+	SSLCertificateFile		/etc/ssl/domain.fr/cert.pem
+	SSLCertificateKeyFile	/etc/ssl/domain.fr/key.pem
+	SSLCACertificateFile	/etc/ssl/domain.fr/fullchain.pem
 </VirtualHost>
 ```
 
 
 ``` ssh-config
 # Client
-Host arfevrier
-    HostName arfevrier.fr
+Host domain
+    HostName domain.fr
     User user
     Port 22
     IdentityFile ~/.ssh/id_rsa
-    ProxyCommand proxytunnel -v -p 127.0.0.1:3128 -r arfevrier.fr:443 -R username:password -X -d %h:%p
+    ProxyCommand proxytunnel -v -p 127.0.0.1:3128 -r domain.fr:443 -R username:password -X -d %h:%p
 ```
 
 # Architecture II
@@ -65,8 +65,8 @@ services:
     network_mode: "host"
     restart: always
     volumes:
-      - /etc/ssl/arfevrier.fr/cert.pem:/etc/stunnel/stunnel.pem:ro
-      - /etc/ssl/arfevrier.fr/key.pem:/etc/stunnel/stunnel.key:ro
+      - /etc/ssl/domain.fr/cert.pem:/etc/stunnel/stunnel.pem:ro
+      - /etc/ssl/domain.fr/key.pem:/etc/stunnel/stunnel.key:ro
     environment:
       STUNNEL_SERVICE: ssh
       STUNNEL_ACCEPT: 146.59.238.203:443
@@ -75,8 +75,8 @@ services:
 
 ``` ssh-config
 # Client
-Host arfevrier.fr
-    HostName arfevrier.fr
+Host domain.fr
+    HostName domain.fr
     User user
     Port 443
     IdentityFile ~/.ssh/id_rsa
